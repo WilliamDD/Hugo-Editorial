@@ -1,0 +1,13 @@
+{{ define "main" }}
+
+<section>
+    <header class="main">
+        <h1>{{ .Title }}</h1>
+    </header>
+
+    <span class="image main"><img src="{{ .Params.featureImage }}" alt="Feature Image" /></span>
+
+    {{ .Content }}
+</section>
+
+{{ end }}
