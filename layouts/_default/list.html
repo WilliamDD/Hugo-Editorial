@@ -1,21 +1,19 @@
 {{ define "main" }}
-<!-- Banner -->
-{{- partial "banner.html" . -}}
+
+{{ range first 1 .Paginator.Pages }}
+    <!-- Banner -->
+    {{- partial "banner.html" . -}}
+{{ end }}
+
 <section>
     <header class="major">
-        <h2>Ipsum sed dolor</h2>
+        <h2>{{ .Site.Params.Header }}</h2>
     </header>
     <div class="posts">
-        {{ $pages := .Pages }}
-        {{ if .IsHome }}
-        {{ $pages = where site.RegularPages "Type" "in" site.Params.mainSections }}
-        {{ end }}
-        {{ $paginator := .Paginate (where $pages "Params.hidden" "ne" true) 10 }}
-        {{ range $paginator.Pages }}
-
+        {{ range after 1 .Paginator.Pages }}
         {{- partial "article.html" . -}}
-        
         {{ end }}
     </div>
+    {{ partial "pagination.html" . }}
 </section>
 {{ end }}
